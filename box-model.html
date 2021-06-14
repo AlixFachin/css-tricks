@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<head>
+
+</head>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap');
+
+p {
+  margin: 0px;
+}
+
+main {
+  --main-color: 62;
+  font-family: 'Lato', sans-serif;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  
+}
+
+.chapter {
+  margin-bottom: 20px;
+  border: 1px dotted hsl(var(--main-color), 100%, 86%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  box-sizing: border-box;
+  width: calc(90% - 20px);
+}
+
+.explanation {
+  background-color: hsl(33, 100%, 82%);
+  box-sizing: border-box;
+  width: 45%;
+  padding: 1em;
+}
+
+.example {
+  background-color: hsl(185, 100%, 90%);
+  padding: 10px;
+  border: 3px solid hsl(185, 20%, 30%); ;
+  box-sizing: border-box;
+  width: 45%;
+  min-height: 50px;
+}
+
+#box2 {
+  padding: 10px;
+  border: 5px solid hsl(185, 60%, 90%);
+  font-size: small;
+  background-color: hsl(185, 90%, 90%);
+}
+
+#box2 > p {
+  background-color: hsl(185, 50%, 50%);
+  height: 30px;
+}
+
+
+#example3 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#box3 {
+  height: 50px;
+  width:100%;
+  padding: 5px;
+  border: 1px solid red;
+  margin-bottom: 20px;
+}
+
+#box3-borderbox {
+  height: 50px;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid red;
+  box-sizing: border-box;
+}
+
+#example4 {
+  font-size: larger;
+}
+
+#box4-em {
+  padding: 3em;
+  border: 1px solid red;
+  margin-bottom: 10px;
+}
+
+#box4-rem{
+  padding: 3rem;
+  border: 1px solid red;
+  margin-bottom: 10px;
+}
+
+#box4-rem-small{
+  padding: 3rem;
+  border: 1px solid red;
+  font-size: smaller;
+}
+
+#box5 {
+  width: 40%;
+  border: 1px solid red;
+}
+
+#box5-min {
+  --item-min-width: 150px;
+  width: calc(max(40%, var(--item-min-width)));
+  border: 1px solid red;
+}
+
+.emphasis {
+  font-weight: bold;
+  font-style: italic;
+  font-family: 'Roboto', sans-serif;
+}
+
+</style>
+
+
+<body>
+
+<main>
+  <div class="chapter">
+    <div class="explanation">
+      <p>Items in HTML are stacked above each other, from top to bottom. By default, between each element is 
+        inserted a new line.</p>
+      <p>
+        Up until HTML5, elements could be divided into <span class="emphasis">block-level elements</span> and 
+        <span class="emphasis">inline</span> elements.<br>
+        Inline elements cannot contain other elements.
+      </p>
+
+    </div>
+    <div class="example">
+      <div id="box">
+        This is an example of container
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="explanation">
+      <p> Each block-level element has a defined height/width, which is either set with its property or defaults to the size 
+        of its children elements.
+      </p>
+      <p> Around each element content is the padding, then the border. Around the border is the margin until the next element.</p>
+      <p> You can see the padding, margin etc in Developer tools of your favourite browser.</p>
+    </div>
+    <div class="example">
+      <div id="box2">
+        <p> Content height: 30px + Padding 10px x2 + Border 5px x2 = 60px box height </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="explanation">
+      <p> You might run to an issue when you want to define the size according to the viewport size or the parent size. </p>
+      <p> By default the <span class="emphasis">height/weight</span> of an item refers to the <span class="emphasis">content</span> 
+      dimensions, and not the total dimensions. </p>
+      <p> In order to apply the CSS properties to the total size (content+padding+border), we use the directive <code>box-sizing: border-box;</code></p>
+    </div>
+    <div class="example" id="example3">
+      <div id="box3">
+        Box width of 100% with default box-sizing.
+      </div>
+      <div id="box3-borderbox">
+        Box width of 100% with <code>border-box</code> mode.
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="explanation">
+      You can specify dimensions with several units. Here are the most useful:
+      <ul>
+        <li><code>px</code> is the dimension (height/width) in pixels</li>
+        <li><code>%</code> is the dimension in % of the parent element</li>
+        <li><code>vh,wh</code> is in % of the viewport. (vh is for viewport height)</li>
+        <li><code>em</code>is the font size at this place of the document</li>
+        <li><code>rem</code>is the root font size of the document</li>
+      </ul>
+    </div>
+    <div class="example" id="example4">
+      <div id="box4-em">
+        padding of <code>3em</code> with big font size, padding of 57px
+      </div>
+      <div id="box4-rem">
+        padding of <code>3rem</code> with big font size, padding of 48px
+      </div>
+      <div id="box4-rem-small">
+        padding of <code>3rem</code> with small font size, padding of 48px
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="explanation">
+      <p>
+      In order to make things even easier/more powerful, you can define variables in CSS.
+      <code>--variable-name: variable-value;</code>. And to use the variable, you use <code>var(--variable-name)</code>.
+      </p>
+      <p>Where it becomes interesting is when you combine the use of variables and calculations.
+         <pre><code>
+           --item-width: 150px;
+           width: calc(max(40%, var(--item-min-width)));
+         </code></pre>
+      </p>
+    </div>
+    <div class="example">
+      <div id="box5">
+        I have no minimum width
+      </div>
+      <div id="box5-min">
+        I have a min width of 50 px
+      </div>
+    </div>
+  </div>
+
+</main>
+
+</body>
+
+<script>
+
+</script>
